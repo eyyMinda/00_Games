@@ -1,0 +1,90 @@
+body{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+    font-size: 20px;
+}
+body div:nth-of-type(2) {
+    transition: all 1s;
+}
+h1{
+    background-color: #ae7b3e;
+    text-align: center;
+    padding: 20px;
+    color: rgb(17, 0, 48);
+}
+.container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #ae977b;
+    padding: 20px;
+}
+.hide {
+    visibility: hidden;
+}
+.display{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../assets/cookie.png');
+    background-repeat: no-repeat;
+    width: 500px;
+    height: 500px;
+    color: #1a1201;
+    border: 1px dotted black;
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+}
+.display>.counter{
+    background-color: #ae7b3e;
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 5px 30px;
+}
+.upgradesBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color:#ae7b3e;
+    min-width: 300px;
+    min-height: 500px;
+    gap: 10px;
+}
+h2{
+    padding: 20px;
+}
+p{
+    max-width: 400px;
+    font-size: 18px;
+}
+.seperate{
+    display: flex;
+    justify-content: space-evenly;
+    border: 2px dotted #000;
+    min-width: 100%;
+    min-height: 400px;
+}
+.column{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+.btn{
+    background-color: #1a1201;
+    color: #fff;
+    min-width: 200px;
+    min-height: 60px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn>img{
+    height: 50px;
+}
+.btn:last-of-type{
+    width: 100%;
+}

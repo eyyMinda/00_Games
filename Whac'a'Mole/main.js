@@ -9,8 +9,8 @@ let holeActive = getRandom;
 let score = 0, Reset = true; scoreGained = false;
 let gameWon;
 
-start.onclick = () => { Reset = false; runGame() };
-restart.onclick = () => gameReset();
+start.onclick = () => { Reset = false; runGame(); start.disabled = true };
+restart.onclick = () => { gameReset(); start.disabled = false };
 
 function runGame() {
     if (!Reset) {
@@ -24,7 +24,6 @@ function runGame() {
         setTimeout(() => {
             holes[getRandom].innerHTML = ''
             holes[getRandom].classList.remove('Active')
-            holes[getRandom].onclick = () => console.log('stopped')
             getRandom = getRandomInt(1, holes.length)
             scoreGained = false;
             setTimeout(() => { runGame() }, getRandomInt(1, 15) + '00')
@@ -35,7 +34,7 @@ function runGame() {
 function gainScore() {
     score++
     scoreField.textContent = score
-    if (score === 50) { alert('You won! The Mole has been defeated!'); gameReset() }
+    if (score === 50) { setTimeout(() => { alert('You won! The Mole has been defeated!'); gameReset() }, 100) }
 }
 function gameReset() {
     holes.innerHTML = ''

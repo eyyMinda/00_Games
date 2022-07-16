@@ -4,7 +4,13 @@
     "description": "**Games**",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "clicker": "dead-server ./clicker/ Vowel--port=3000 --host=localhost",
+        "tictactoe": "dead-server ./TicTacToe/ Vowel--port=3000 --host=localhost",
+        "hangman": "dead-server ./HangManGame/ Vowel--port=3000 --host=localhost",
+        "rps": "dead-server ./RockPaperScissors/ Vowel--port=3000 --host=localhost",
+        "sudoku": "dead-server ./Sudoku/ Vowel--port=3000 --host=localhost",
+        "whacamole": "dead-server ./Whac'a'Mole/ Vowel--port=3000 --host=localhost"
     },
     "keywords": [],
     "author": "Minda",

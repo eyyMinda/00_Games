@@ -6,43 +6,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cookie Clicker</title>
-    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/style.css">
     <script src="main.js" type="text/javascript" defer></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <style>
-        body section div:nth-of-type(2) {
-            transition: all 1s;
-        }
-    </style>
 </head>
 
-<body class="bg-secondary">
-    <section class="container shadow-lg">
-        <h1 class="text-center text-primary">Clicker</h1>
-        <div class="row mt-2">
-            <img src="./assets/cookie.png" alt="" class="col-6" onclick="increaseCookieCount()">
-            <div id="cookieDisplay"
-                class="text-center text-primary shadow-lg fs-1 col-2 align-self-center user-select-none">0</div>
-            <div id="upgradesBox" class="bg-dark text-primary col">
-                <h2 class="text-center">Upgrades Box</h2>
-                <div class="row">
-                    <ul class="col">
-                        <!--Create <li> el of an upgrade-->
-                        <button class="btn shadow-lg text-primary p-3" style="visibility: hidden;" id="momUpgrade">momUpgrade</button>
-                        <button class="btn shadow-lg text-primary p-3" style="visibility: hidden;" id="grannyUpgrade">grannyUpgrade</button>
-                    </ul>
-                    <ul class="col">
-                        <li><button class="btn shadow-lg text-primary" onclick="buyHelper('mom')">50c <img
-                                    src="./assets/mom.png" height="50px"> Use Mom</button></li>
-                        <li><button class="btn shadow-lg text-primary" onclick="buyHelper('granny')">500c <img
-                                    src="./assets/grandma.png" height="50px"> Use Granny</button></li>
-                    </ul>
-                </div>
+<body>
+    <h1>Clicker</h1>
+    <div class="container">
+        <!-- <div></div> -->
+        <div class="display" onclick="increaseCookieCount()">
+            <div id="cookieDisplay" class="counter">0 c</div>
+            <div id="helperSpeedDisplay" class="counter">0 c/s</div>
+        </div>
+        <div id="upgradesBox" class="upgradesBox">
+            <h2 class="">Ask for help</h2>
+            <p>If you've earned enough cookies, others might be interested in helping you. But you have to prove
+                yourself worthy of them first!</p>
+            <div class="seperate">
+                <ul class="column">
+                    <button class="btn hide" id="momUpgrade" onclick="buyUpgrade('mom')">100c | Motivate</button>
+                    <button class="btn hide" id="grannyUpgrade" onclick="buyUpgrade('granny')">1000c | Motivate</button>
+                </ul>
+                <ul class="column">
+                    <li>
+                        <button class="btn" onclick="buyHelper('mom')">50c | Ask Mom<img
+                                src="./assets/mom.png"></button>
+                    </li>
+                    <li>
+                        <button class="btn" onclick="buyHelper('granny')">500c | Ask Granny <img
+                                src="./assets/grandma.png"></button>
+                    </li>
+                </ul>
             </div>
         </div>
-        <button class="row btn bg-danger m-5" onclick="cookieReset()">Reset All</button>
-    </section>
+    </div>
+    <button class="btn" onclick="cookieReset()">Reset All</button>
 </body>
 
 </html>

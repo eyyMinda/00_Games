@@ -12,7 +12,7 @@ Ramdom word from list guessing game. Using keyboard listener wtih signal: contro
 
 *RockPaperScissors*
 --------------------------
-Play with pc, console logging answers. Repeatable.
+Play with pc (console logging answers). Repeatable.
 --------------------------
 
 *Sudoku*
