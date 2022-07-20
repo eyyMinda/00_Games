@@ -4,7 +4,6 @@
 --------------------------
 Simple browser clicker game, using cookies for saving session progress. Continious (With reset).
 
-Run:
 ```
 npm run clicker
 ```
@@ -15,7 +14,6 @@ npm run clicker
 --------------------------
 Ramdom word from list guessing game. Using keyboard listener wtih signal: controller.signal. Ending it when guessed or failed. Repeatable.
 
-Run:
 ```
 npm run hangman
 ```
@@ -25,7 +23,6 @@ npm run hangman
 --------------------------
 Play with pc (console logging answers). Repeatable.
 
-Run:
 ```
 npm run rps
 ```
@@ -36,7 +33,6 @@ npm run rps
 --------------------------
 A Sudoku game generating boards based on input received from API. Can also send your current board to solver API to fill the board with solved one. Repeatable.
 
-Run:
 ```
 npm run sudoku
 ```
@@ -47,7 +43,6 @@ npm run sudoku
 --------------------------
 Multiplayer TicTacToe. Repeatable.
 
-Run:
 ```
 npm run tictactoe
 ```
@@ -58,7 +53,6 @@ npm run tictactoe
 --------------------------
 Bare minimum of a game 😅
 
-Run:
 ```
 npm run whacamole
 ```
