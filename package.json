@@ -10,7 +10,8 @@
         "hangman": "dead-server ./HangManGame/ Vowel--port=3000 --host=localhost",
         "rps": "dead-server ./RockPaperScissors/ Vowel--port=3000 --host=localhost",
         "sudoku": "dead-server ./Sudoku/ Vowel--port=3000 --host=localhost",
-        "whacamole": "dead-server ./Whac'a'Mole/ Vowel--port=3000 --host=localhost"
+        "whacamole": "dead-server ./Whac'a'Mole/ Vowel--port=3000 --host=localhost",
+        "snake": "dead-server ./Snake/ Vowel--port=3000 --host=localhost"
     },
     "keywords": [],
     "author": "Minda",
