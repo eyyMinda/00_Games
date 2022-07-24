@@ -1,22 +1,16 @@
 const canvas = document.getElementById('canvas'); const ctx = canvas.getContext('2d');
 document.body.addEventListener('keydown', keyDown)
 
-let score = 0;
-let speed = 10;
+let score = 0, speed = 10;
 
 let tileCount = 20;
 let tileSize = canvas.clientWidth / tileCount - 2;
 
 const snakeParts = [];
 let tailLength = 2;
-let headX = 10; //19 max
-let headY = 10; //19 max
-
-let velocityX = 0;
-let velocityY = 0;
-
-let appleX = 6;
-let appleY = 6;
+let headX = 10, headY = 10; //19 max
+let velocityX = 0, velocityY = 0;
+let appleX = 6, appleY = 6;
 
 
 function renderGame() {
@@ -74,6 +68,9 @@ function keyDown(e) {
         case 39: if (velocityX != -1) { velocityY = 0; velocityX = 1; } break; //right
     }
 }
+
+class snakePart { constructor(x, y) { this.x = x; this.y = y; } }
+
 function renderSnake() {
     ctx.fillStyle = 'orange';
     ctx.fillRect(headX * tileCount, headY * tileCount, tileSize, tileSize);
@@ -95,13 +92,6 @@ function renderApple() {
 function clearScreen() {
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
-}
-
-class snakePart {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-    }
 }
 
 renderGame();
