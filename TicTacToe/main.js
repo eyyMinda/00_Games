@@ -13,11 +13,9 @@ const winningConditions = [
     [2, 4, 6]
 ];
 
-const XWon = 'Xwon'
-const OWon = 'Owon'
-const tie = 'tie'
+const XWon = 'Xwon', OWon = 'Owon', tie = 'tie'
 let gameWon;
-let isGameActive = true
+let isGameActive = true;
 let board = ['', '', '', '', '', '', '', '', ''];
 let currentPlayer = 'X';
 
@@ -29,7 +27,7 @@ function changePlayer() {
 }
 
 function checkTile(tile) {
-    if (tile.innerText === 'X' || tile.innerText === 'O') { return false; } return true;
+    return tile.innerText !== 'X' || tile.innerText !== 'O';
 };
 
 function userChoice(tile, i) {
@@ -37,7 +35,6 @@ function userChoice(tile, i) {
         tile.innerText = currentPlayer;
         tile.classList.add(`player${currentPlayer}`);
         board[i] = currentPlayer;
-        console.log(board)
         checkResults();
         changePlayer();
     }
@@ -54,28 +51,22 @@ function checkResults() {
         if (a === b && b === c) { gameWon = true; break; } // Checks by winCondition wether each of 3 tiles is the same string ex.('X' or 'O')
     }
     if (gameWon) { endResult(currentPlayer === 'X' ? XWon : OWon); isGameActive = false; return; }
-    if (!board.includes('')) endResult(tie)
+    if (!board.includes('')) endResult(tie);
 }
 
 function endResult(end) {
     switch (end) {
-        case XWon:
-            display.innerHTML = `<span class="playerX">X</span> Won the Game!`
-            break;
-        case OWon:
-            display.innerHTML = `<span class="playerO">O</span> Won the Game!`
-            break;
-        case tie:
-            display.innerHTML = `It's a tie!`
-            break;
+        case XWon: display.innerHTML = `<span class="playerX">X</span> Won the Game!`; break;
+        case OWon: display.innerHTML = `<span class="playerO">O</span> Won the Game!`; break;
+        case tie: display.innerHTML = `It's a tie!`; break;
     }
 }
 
 function resetBoard() {
     board = ['', '', '', '', '', '', '', '', ''];
     isGameActive = true;
-    display.innerHTML = `Player <span class="display-player playerX">X</span>'s turn`
-    if (currentPlayer === 'O') changePlayer()
+    display.innerHTML = `Player <span class="display-player playerX">X</span>'s turn`;
+    if (currentPlayer === 'O') changePlayer();
     tiles.forEach(tile => {
         tile.innerText = '';
         tile.classList.remove('playerX', 'playerO');
@@ -83,6 +74,6 @@ function resetBoard() {
 }
 
 tiles.forEach((tile, i) => {
-    tile.addEventListener(('click'), () => userChoice(tile, i))
+    tile.addEventListener(('click'), () => userChoice(tile, i));
 })
 resetButton.addEventListener('click', resetBoard);

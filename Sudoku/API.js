@@ -11,6 +11,7 @@ function getNewBoard() {
         .then(data => {
             setTimeout(() => {
                 board = data.board; renderGame(board); getSolved();
+                console.log(board);
             }, 1)
         })
     wrong = 0;
@@ -28,7 +29,8 @@ function getSolved(param) {
         })
             .then(response => response.json())
             .then(response => {
-                solved = response.solution
+                solved = response.solution;
+                console.log(solved);
             })
             .catch(console.warn)
     }, 200)
