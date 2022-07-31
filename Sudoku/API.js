@@ -11,7 +11,6 @@ function getNewBoard() {
         .then(data => {
             setTimeout(() => {
                 board = data.board; renderGame(board); getSolved();
-                console.log(board);
             }, 1)
         })
     wrong = 0;
