@@ -3,6 +3,8 @@ const helpersSpeedDisplay = document.getElementById('helperSpeedDisplay');
 const upgradesBox = document.getElementById('upgradesBox');
 const momUpgrade = document.getElementById('momUpgrade');
 const grannyUpgrade = document.getElementById('grannyUpgrade');
+const momBtn = document.getElementById('momBtn');
+const grannyBtn = document.getElementById('grannyBtn');
 
 let cookieCount = getCookie('cookieCount') || 0;
 let momCount = getCookie('momCount') || 0;
@@ -46,12 +48,14 @@ function buyHelper(helper) {
         cookieCount = Number(cookieCount) - helpersPrice[0];
         helpersPrice[0] = helpersPrice[0] * 2;
         momCount++;
+        momBtn.textContent = `${helpersPrice[0].toFixed()} | Ask Mom`;
         setCookie('momCount', momCount);
     }
     if (helper == 'granny' && cookieCount >= helpersPrice[1]) {
         cookieCount = Number(cookieCount) - helpersPrice[1];
         helpersPrice[1] = helpersPrice[1] * 2;
         grannyCount++;
+        grannyBtn.textContent = `${helpersPrice[1].toFixed()} | Ask Granny`;
         setCookie('grannyCount', grannyCount);
     }
     cookieDisplay.textContent = cookieCount + ' c';

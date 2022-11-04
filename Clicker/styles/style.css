@@ -13,6 +13,7 @@ h1{
     color: rgb(17, 0, 48);
 }
 .container{
+    height: calc(100vh - 120px);
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -81,6 +82,7 @@ p{
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 .btn>img{
     height: 50px;
