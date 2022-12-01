@@ -17,6 +17,9 @@ let helpersEff = [1, 5], helpersPrice = [50, 500], upgradePrice = [100, 1000];
 let helpersSpeed = momCount * helpersEff[0] * helpersUpgrades[0] + grannyCount * helpersEff[1] * helpersUpgrades[1];
 helpersSpeedDisplay.textContent = helpersSpeed + ' c/s';
 
+momBtn.textContent = `${helpersPrice[0].toFixed()} | Ask Mom`;
+grannyBtn.textContent = `${helpersPrice[1].toFixed()} | Ask Granny`;
+
 function setCookie(name, value) {
     document.cookie = `${name}=${value};`
 }
