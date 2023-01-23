@@ -1,7 +1,7 @@
 const options = {
   headers: {
     'content-type': 'application/json',
-    'X-RapidAPI-Key': '6fff3f4d6fmsh01bdd094272a848p1765e3jsn3ee12ed88fac',
+    'X-RapidAPI-Key': process.env.RAPID_API_KEY,
     'X-RapidAPI-Host': 'sudoku-generator1.p.rapidapi.com'
   }
 };
