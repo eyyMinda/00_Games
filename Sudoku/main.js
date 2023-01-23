@@ -42,7 +42,6 @@ function renderDigits() {
 
 function renderGame(param) {
   param === solved ? isSolved = true : isSolved = false;
-  board = board;
   boardField.innerHTML = '';
 
   for (let r = 0; r < 9; r++) {
@@ -53,7 +52,7 @@ function renderGame(param) {
       tile.addEventListener('click', selectTile);
       if (r == 2 || r == 5) tile.classList.add('horizontal-seperation');
       if (c == 2 || c == 5) tile.classList.add('vertical-seperation');
-      if (param[r][c] !== 0) {
+      if (param[r][c] !== '.') {
         tile.textContent = param[r][c];
         tile.classList.add('tile-start');
       }
@@ -65,11 +64,12 @@ function renderGame(param) {
 function selectNum() {
   if (numSelected != null) numSelected.classList.remove('selected');
   numSelected = this;
+  console.log(this);
   numSelected.classList.add('selected');
 }
 
 function isFilled() {
-  if (!board.toString().includes('0')) { alert('Great job logic boy!'); return };
+  if (!board.toString().includes('.')) { alert('Great job logic boy!'); return };
   if (isSolved) alert('It would be nice if you would solve it yourself, but you know... you do you.');
 }
 
@@ -77,18 +77,19 @@ function selectTile() {
   isFilled();
   let a = this.id.split('-');
   if (numSelected) {
-    if (solved[a[0]][a[1]] !== Number(numSelected.textContent)) {
+    console.log('this', this)
+    console.log('solved[a]', solved[a[0]][a[1]])
+    if (solved[a[0]][a[1]] !== numSelected.textContent) {
       wrong++;
       faults.innerHTML = `Wrong attempts: ${wrong}`;
       return;
     }
     if (this.innerText == '') {
       this.innerText = numSelected.textContent;
-      board[a[0]][a[1]] = Number(numSelected.textContent);
+      board[a[0]][a[1]] = numSelected.textContent;
     }
   }
 }
-
 
 function isValid(board, row, col, k) {
   for (let i = 0; i < 9; i++) {
@@ -100,27 +101,3 @@ function isValid(board, row, col, k) {
   }
   return true;
 }
-
-
-function sodokoSolver(data) {
-  for (let i = 0; i < 9; i++) {
-    for (let j = 0; j < 9; j++) {
-      if (data[i][j] == '0') {
-        for (let k = 1; k <= 9; k++) {
-          if (isValid(data, i, j, k)) {
-            data[i][j] = `${k}`;
-            if (sodokoSolver(data)) {
-              return true;
-            } else {
-              data[i][j] = '0';
-            }
-          }
-        }
-        return false;
-      }
-    }
-  }
-  return true;
-}
-
-

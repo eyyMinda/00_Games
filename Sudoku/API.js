@@ -1,47 +1,34 @@
-//https://github.com/bertoort/sugoku ***api docs
-const encodeBoard = (board) => board.reduce((result, row, i) => result + `%5B${encodeURIComponent(row)}%5D${i === board.length - 1 ? '' : '%2C'}`, '')
-const encodeParams = (params) =>
-  Object.keys(params)
-    .map(key => key + '=' + `%5B${encodeBoard(params[key])}%5D`)
-    .join('&');
-
-//Problem with cors
-const headers = {
-  mode: 'cors',
-  method: 'GET',
+const options = {
   headers: {
-    "Access-Control-Allow-Origin": "*",
-    'Content-Type': 'application/json',
+    'content-type': 'application/json',
+    'X-RapidAPI-Key': '6fff3f4d6fmsh01bdd094272a848p1765e3jsn3ee12ed88fac',
+    'X-RapidAPI-Host': 'sudoku-generator1.p.rapidapi.com'
   }
-}
-
-const myHerokuProxy = 'https://whispering-depths-70207.herokuapp.com/';
-const boardUrl = 'https://sugoku.herokuapp.com/board?difficulty=easy';
+};
 
 function getNewBoard() {
-  fetch(boardUrl, headers).then(response => response.json())
+  const difficulty = document.getElementById('difficulty').value || 'easy';
+
+  fetch('https://sudoku-generator1.p.rapidapi.com/sudoku/generate?difficulty=' + difficulty, options)
+    .then(response => response.json())
     .then(data => {
       setTimeout(() => {
-        board = data.board; renderGame(board); getSolved();
+        board = data.puzzle.match(/.{1,9}/g); //splits by 9 chars
+        renderGame(board); getSolved(board);
       }, 1)
     })
   wrong = 0;
   faults.innerHTML = `Wrong attempts: ${wrong}`;
 }
 
-function getSolved(param) {
+function getSolved(board) {
   setTimeout(() => {
-    const data = { board: board }
+    const toSolveURL = 'https://sudoku-generator1.p.rapidapi.com/sudoku/solve?puzzle=' + board.join('');
 
-    fetch('https://sugoku.herokuapp.com/solve', {
-      method: 'POST',
-      body: encodeParams(data),
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-    })
+    fetch(toSolveURL, options)
       .then(response => response.json())
-      .then(response => {
-        solved = response.solution;
-        console.log(solved);
+      .then(res => {
+        solved = res.solution.match(/.{1,9}/g); //splits by 9 chars
       })
       .catch(console.warn)
   }, 200)

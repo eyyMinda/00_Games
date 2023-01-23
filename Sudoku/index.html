@@ -16,9 +16,13 @@
 <body>
     <section class="container">
         <h1>Sudoku</h1>
+        <select class="btn" id="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+        </select>
         <button class="btn" onclick="getNewBoard()">Get New Board</button>
         <button class="btn" onclick="renderGame(solved)">Auto-Solve</button>
-        <button class="btn" onclick="sodokoSolver(board)">Custom-Solver</button>
         <hr>
         <h2 id="faults">Wrong attempts: 0</h2>
         <hr>

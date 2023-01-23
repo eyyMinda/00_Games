@@ -1,22 +1,18 @@
 {
-    "name": "00_games",
-    "version": "1.0.0",
-    "description": "**Games**",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "clicker": "dead-server ./clicker/ Vowel--port=3000 --host=localhost",
-        "tictactoe": "dead-server ./TicTacToe/ Vowel--port=3000 --host=localhost",
-        "hangman": "dead-server ./HangManGame/ Vowel--port=3000 --host=localhost",
-        "rps": "dead-server ./RockPaperScissors/ Vowel--port=3000 --host=localhost",
-        "sudoku": "dead-server ./Sudoku/ Vowel--port=3000 --host=localhost",
-        "whacamole": "dead-server ./Whac'a'Mole/ Vowel--port=3000 --host=localhost",
-        "snake": "dead-server ./Snake/ Vowel--port=3000 --host=localhost"
-    },
-    "keywords": [],
-    "author": "Minda",
-    "license": "ISC",
-    "devDependencies": {
-        "dead-server": "^1.0.6"
-    }
+  "name": "00_games",
+  "version": "1.0.0",
+  "description": "**Games**",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Minda",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv-webpack": "^8.0.1",
+    "express": "^4.18.2",
+    "webpack": "^5.75.0"
+  }
 }

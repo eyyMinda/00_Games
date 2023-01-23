@@ -1,0 +1,48 @@
+.homePage {
+  background: hsl(227, 10%, 10%);
+  color: #fff;
+  font: 300 1em 'Fira Sans', sans-serif;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.homePage__heading {
+  font-size: 6em;
+  color: purple;
+  margin-bottom: 2rem;
+}
+.homePage__credentials {
+  font-size: 2em;
+  color: orangered;
+}
+.homePage ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5vw;
+}
+.list-item {
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+  color: #ffa260;
+  border-color: #ffa260;
+  transition: 0.25s;
+}
+.list-item:hover,
+.list-item:focus {
+  box-shadow: 0 0.5em 0.5em -0.4em #e4cb58;
+  transform: translateY(-0.25em);
+  color: #e4cb58;
+  border-color: #e4cb58;
+}
