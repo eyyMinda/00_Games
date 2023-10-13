@@ -1,5 +1,3 @@
-const DEV = false;
-
 const fetchApiKey = async () => {
   try {
     const response = await fetch('/api/get-api-key');
@@ -16,7 +14,7 @@ const fetchApiKey = async () => {
 };
 
 
-// let apiKey = '';
+let apiKey = '';
 const options = {
   headers: {
     'Content-Type': 'application/json',
@@ -24,15 +22,9 @@ const options = {
   },
 };
 
-const { apiKey } = require('../api/serve-api-key');
-console.log(apiKey)
-options.headers['X-RapidAPI-Key'] = apiKey;
-
 const fetchSudoku = async (url) => {
-  if (DEV && apiKey === '') {
-    apiKey = await fetchApiKey();
-    options.headers['X-RapidAPI-Key'] = apiKey;
-  }
+  apiKey = await fetchApiKey();
+  options.headers['X-RapidAPI-Key'] = apiKey;
 
   try {
     const response = await fetch(url, options);
