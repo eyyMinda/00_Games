@@ -1,8 +1,8 @@
 const fs = require('fs');
 const express = require('express');
 require('dotenv').config({ path: './.env' });
-const app = express();
 
+const app = express();
 
 app.use(express.static(__dirname));
 app.get('/', (req, res) => {
@@ -16,9 +16,9 @@ app.get('/api/get-api-key', (req, res) => {
 
 fs.readdirSync(__dirname).forEach(file => {
   if (file !== 'node_modules' && fs.lstatSync(file).isDirectory()) {
-    app.use(`/${__dirname}/${file}`, express.static(`${__dirname}/${__dirname}/${file}`));
-    app.get(`/${__dirname}/${file}`, (req, res) => {
-      res.sendFile(`${__dirname}/${__dirname}/${file}/index.html`);
+    app.use(`/${file}`, express.static(`${__dirname}/${file}`));
+    app.get(`/${file}`, (req, res) => {
+      res.sendFile(`${__dirname}/${file}/index.html`);
     });
   }
 });
