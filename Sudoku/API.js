@@ -1,35 +1,55 @@
-const options = {
-  headers: {
-    'content-type': 'application/json',
-    'X-RapidAPI-Key': process.env.RAPID_API_KEY,
-    'X-RapidAPI-Host': 'sudoku-generator1.p.rapidapi.com'
+const fetchApiKey = async () => {
+  try {
+    const response = await fetch('/api/get-api-key');
+    if (response.ok) {
+      return await response.json().apiKey;
+    } else {
+      console.error('Failed to retrieve the API key');
+    }
+  } catch (error) {
+    console.error('An error occurred:', error);
+    return '';
   }
 };
 
-function getNewBoard() {
-  const difficulty = document.getElementById('difficulty').value || 'easy';
+let apiKey = '', options = {};
 
-  fetch('https://sudoku-generator1.p.rapidapi.com/sudoku/generate?difficulty=' + difficulty, options)
-    .then(response => response.json())
-    .then(data => {
-      setTimeout(() => {
+const getNewBoard = async () => {
+  const difficulty = document.getElementById('difficulty').value || 'easy';
+  if (apiKey == '') {
+    apiKey = await fetchApiKey();
+    options = {
+      headers: {
+        'content-type': 'application/json',
+        'X-RapidAPI-Key': apiKey || '6fff3f4d6fmsh01bdd094272a848p1765e3jsn3ee12ed88fac',
+        'X-RapidAPI-Host': 'sudoku-generator1.p.rapidapi.com'
+      }
+    };
+  }
+
+  try {
+    await fetch('https://sudoku-generator1.p.rapidapi.com/sudoku/generate?difficulty=' + difficulty, options)
+      .then(response => response.json())
+      .then(data => {
         board = data.puzzle.match(/.{1,9}/g); //splits by 9 chars
         renderGame(board); getSolved(board);
-      }, 1)
-    })
-  wrong = 0;
-  faults.innerHTML = `Wrong attempts: ${wrong}`;
+      })
+    wrong = 0;
+    faults.innerHTML = `Wrong attempts: ${wrong}`;
+  } catch (error) {
+    console.log(error);
+  }
+
 }
 
-function getSolved(board) {
-  setTimeout(() => {
-    const toSolveURL = 'https://sudoku-generator1.p.rapidapi.com/sudoku/solve?puzzle=' + board.join('');
-
-    fetch(toSolveURL, options)
+const getSolved = async board => {
+  try {
+    await fetch('https://sudoku-generator1.p.rapidapi.com/sudoku/solve?puzzle=' + board.join(''), options)
       .then(response => response.json())
-      .then(res => {
-        solved = res.solution.match(/.{1,9}/g); //splits by 9 chars
+      .then(data => {
+        solved = data.solution.match(/.{1,9}/g); //splits by 9 chars
       })
-      .catch(console.warn)
-  }, 200)
+  } catch (error) {
+    console.warn(error)
+  }
 }

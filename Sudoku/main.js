@@ -41,7 +41,7 @@ function renderDigits() {
 }
 
 function renderGame(param) {
-  param === solved ? isSolved = true : isSolved = false;
+  isSolved = param === solved ? true : false;
   boardField.innerHTML = '';
 
   for (let r = 0; r < 9; r++) {
@@ -64,29 +64,27 @@ function renderGame(param) {
 function selectNum() {
   if (numSelected != null) numSelected.classList.remove('selected');
   numSelected = this;
-  console.log(this);
   numSelected.classList.add('selected');
 }
 
 function isFilled() {
-  if (!board.toString().includes('.')) { alert('Great job logic boy!'); return };
-  if (isSolved) alert('It would be nice if you would solve it yourself, but you know... you do you.');
+  if (!board.toString().includes('.')) { alert('Great job logic boy!'); return true };
+  if (isSolved) { alert('It would be nice if you would solve it yourself, but you know... you do you.'); return true };
 }
 
 function selectTile() {
-  isFilled();
-  let a = this.id.split('-');
-  if (numSelected) {
-    console.log('this', this)
-    console.log('solved[a]', solved[a[0]][a[1]])
-    if (solved[a[0]][a[1]] !== numSelected.textContent) {
-      wrong++;
-      faults.innerHTML = `Wrong attempts: ${wrong}`;
-      return;
-    }
-    if (this.innerText == '') {
-      this.innerText = numSelected.textContent;
-      board[a[0]][a[1]] = numSelected.textContent;
+  if (!isFilled()) {
+    let a = this.id.split('-');
+    if (numSelected) {
+      if (solved[a[0]][a[1]] !== numSelected.textContent) {
+        wrong++;
+        faults.innerHTML = `Wrong attempts: ${wrong}`;
+        return;
+      }
+      if (this.innerText == '') {
+        this.innerText = numSelected.textContent;
+        board[a[0]][a[1]] = numSelected.textContent;
+      }
     }
   }
 }
