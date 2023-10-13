@@ -20,19 +20,19 @@ let solved = [
   "675832941",
   "812945763"
 ];
-let numbers, digits, numSelected;
+let numSelected;
 let wrong = 0, isSolved = false;
 
 const boardField = document.getElementById('board');
 const digitsField = document.getElementById('digits');
 const faults = document.getElementById('faults');
 
-window.onload = function () { renderDigits(); getNewBoard(); }
+window.onload = () => { renderDigits(); getNewBoard(); }
 
 function renderDigits() {
   digitsField.innerHTML = '';
-  for (let i = 1; i < 10; i++) {
-    let digit = document.createElement('div');
+  for (let i = 1; i <= 9; i++) {
+    const digit = document.createElement('div');
     digit.classList.add('digit');
     digit.textContent = i;
     digit.addEventListener('click', selectNum);
@@ -41,17 +41,17 @@ function renderDigits() {
 }
 
 function renderGame(param) {
-  isSolved = param === solved ? true : false;
+  isSolved = param === solved;
   boardField.innerHTML = '';
 
   for (let r = 0; r < 9; r++) {
     for (let c = 0; c < 9; c++) {
       let tile = document.createElement('div');
-      tile.id = r.toString() + '-' + c.toString();
+      tile.id = `${r}-${c}`;
       tile.classList.add('tile');
       tile.addEventListener('click', selectTile);
-      if (r == 2 || r == 5) tile.classList.add('horizontal-seperation');
-      if (c == 2 || c == 5) tile.classList.add('vertical-seperation');
+      if (r % 3 === 2) tile.classList.add('horizontal-seperation');
+      if (c % 3 === 2) tile.classList.add('vertical-seperation');
       if (param[r][c] !== '.') {
         tile.textContent = param[r][c];
         tile.classList.add('tile-start');
@@ -62,7 +62,7 @@ function renderGame(param) {
 }
 
 function selectNum() {
-  if (numSelected != null) numSelected.classList.remove('selected');
+  if (numSelected) numSelected.classList.remove('selected');
   numSelected = this;
   numSelected.classList.add('selected');
 }
@@ -73,18 +73,18 @@ function isFilled() {
 }
 
 function selectTile() {
-  if (!isFilled()) {
-    let a = this.id.split('-');
-    if (numSelected) {
-      if (solved[a[0]][a[1]] !== numSelected.textContent) {
-        wrong++;
-        faults.innerHTML = `Wrong attempts: ${wrong}`;
-        return;
-      }
-      if (this.innerText == '') {
-        this.innerText = numSelected.textContent;
-        board[a[0]][a[1]] = numSelected.textContent;
-      }
+  if (isFilled()) return;
+
+  const [row, col] = this.id.split('-');
+  if (numSelected) {
+    if (solved[row][col] !== numSelected.textContent) {
+      wrong++;
+      faults.innerHTML = `Wrong attempts: ${wrong}`;
+      return;
+    }
+    if (this.innerText === '') {
+      this.innerText = numSelected.textContent;
+      board[row][col] = numSelected.textContent;
     }
   }
 }
